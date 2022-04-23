@@ -114,6 +114,10 @@ class Credentials:
             if credential.appName == appName:
                 return credential
 
+    @classmethod
+    def display_credentials(cls):
+        pass
+
     def generate_new_password(self):
         import random
         import string
@@ -126,3 +130,10 @@ class Credentials:
         password = "".join(random.sample(SYMBOLS, prompt))
         print("\n Password Generated successfully!")
         print("Your new password is " + str(password))
+
+    def save_credentials(self):
+        pass
+
+    @classmethod
+    def credential_presence(cls, appName):
+        pass
