@@ -1,5 +1,8 @@
 import unittest
+import user
 from user import User
+
+user_details = []
 
 
 class TestUser(unittest.TestCase):
@@ -42,11 +45,23 @@ class TestUser(unittest.TestCase):
         test_delete_user to test if we can remove a user from the user details list
         """
         self.new_user.save_user()
-        test_user = User("Test", "@tester")  # new user
+        test_user = User("tester", "@tester")  # new user
         test_user.save_user()
 
         self.new_user.delete_user()  # Deleting a user object
         self.assertEqual(len(User.user_details), 1)
+
+    def test_display_users(self):
+        """
+        method that returns a list of all users saved
+        """
+        self.assertEqual(User.display_users(), User.user_details)
+
+    # def test_copy_password(self):
+    #     self.new_user.save_user()
+    #     User.copy_password("@monica")
+    #
+    #     self.assertEqual(self.new_user.user_password, pyperclip.paste())
 
 
 if __name__ == '__main__':

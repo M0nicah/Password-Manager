@@ -1,4 +1,6 @@
 class User:
+
+    username = None
     user_details = []  # empty user details
 
     def __init__(self, username, user_password):
@@ -12,5 +14,13 @@ class User:
         User.user_details.append(self)
 
     def delete_user(self):
-        User.user_details.append(self)
+        User.user_details.remove(self)
+
+    @classmethod
+    def display_users(cls):
+        """
+        method that returns the user list
+        """
+        return cls.user_details
+
 
