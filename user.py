@@ -10,3 +10,7 @@ class User:
         save_contact method saves user objects into contact_list
         """
         User.user_details.append(self)
+
+    def delete_user(self):
+        User.user_details.append(self)
+
