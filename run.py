@@ -1,6 +1,6 @@
 #!/usr/bin/env python3.10
 
-from user import User
+from passmanager import User, Credentials
 
 
 def create_new_user(username, user_password):
@@ -25,8 +25,10 @@ def delete_user(user):
     user.delete_user()
 
 
-def display_users():
+def display_user():
     """
     Function that returns all the saved users
     """
-    return User.display_users()
+    return User.display_user()
+
+

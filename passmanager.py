@@ -70,8 +70,9 @@ class User:
     def delete_user(cls, self):
         User.users_list.remove(self)
 
-    def display_users(self, cls):
+    def display_user(self, cls):
         return cls.users_list
+
 
 
 class Credentials:
@@ -92,6 +93,10 @@ class Credentials:
         self.appName = appName
         self.userName = userName
         self.passWord = passWord
+
+    def create_new_credential(self, appName, userName, passWord):
+        new_credential = Credentials(appName, userName, passWord)
+        return new_credential
 
     def save_app_credentials(self):
         """
@@ -115,7 +120,17 @@ class Credentials:
                 return credential
 
     @classmethod
-    def display_credentials(cls):
+    def display_credentials():
+        Credentials.display_credentials()
+        pass
+
+    def save_credentials(self):
+        Credentials.save_app_credentials()
+        pass
+
+    @classmethod
+    def check_credential_presence(cls, appName):
+        return Credentials.credential_presence(appName)
         pass
 
     def generate_new_password(self):
@@ -131,9 +146,4 @@ class Credentials:
         print("\n Password Generated successfully!")
         print("Your new password is " + str(password))
 
-    def save_credentials(self):
-        pass
 
-    @classmethod
-    def credential_presence(cls, appName):
-        pass
