@@ -31,3 +31,8 @@ To operate this program, run the following commands:
 For questions or contributions contact me via
 * [Twitter](https://twitter.com/m0nica)
 * Email: monica.w.masae@gmail.com
+
+#### License
+MIT License
+
+Copyright (c) 2022 Monica Masae
