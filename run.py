@@ -69,7 +69,58 @@ def generate_password(self):
     return new_password
 
 
+def passmanager():
+    print("Welcome to Password Manager!")
+    print("Select a command to continue: ")
+
+    command = True
+
+    while command:  # commands to guide the user
+        print("""
+        1.Create New Account
+        2.Already have an account, Sign me in.
+        Q.Exit/Quit
+        """)
+
+        print("""******************************************
+        """)
+
+        command = input("What would you like to do? ")
+
+        if command == "1" :
+            print("Sign Up")
+            print("#" * 25)
+            username = (input("Enter username: "))
+            user_password = ""
+            while True:
+                print("Do you want to generate a strong password? (y/n)")
+                response = input("")
+                if response == "y":
+                    user_password = generate_password(user_password)
+                    break
+                elif response == "n":
+                    user_password = input("Enter your password: ")
+                    break
+                else:
+                    print("Password is invalid!")
+
+            save_user(create_new_user(username, user_password))
+            print(f"Hello {username}, a new account was successfully created! Your account password is {user_password}")
+            print("*")
+            print("**")
+            print("***")
+            print("****")
+            print("*****")
+
+       elif command == "2":
+            print("Log in!")
 
 
 
 
+
+
+
+
+if __name__ == '__main__':
+    passmanager()
