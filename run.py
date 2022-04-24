@@ -96,8 +96,8 @@ def passmanager():
 
         if command == "1":
             print("Sign Up")
-            print("#" * 40)
-            username = (input("Enter username: "))
+            print(" # " * 20)
+            username = input("Enter username: ")
             user_password = ""
             while True:
                 print("Do you want to generate a strong password? (y/n)")
@@ -112,20 +112,31 @@ def passmanager():
                     print("Password is invalid!")
 
             save_user(create_new_user(username, user_password))
-            print(f"Hello {username}, a new account was created successfully! Your account password is {user_password}")
+            print(f"Hello {username}, your new account was created successfully! Your account password is {user_password}")
 
-            print("*" * 30)
+            print(" * " * 30)
         elif command == "2":
             print("* Welcome back! Sign In... *")
-            print("#" * 30)
+            print(" # " * 30)
 
             username = input("Enter your username: ")
             user_password = input("Enter password: ")
-            user_login(username, user_password)
+            login = user_login(username, user_password)
+            if user_login == login:
+                print(f"Hello {username} welcome back to Password manager 🚀")
             while True:
                 print("""
-                Select command to proceed
+                1. Create new Credential
+                2. View my Credentials
+                3. Delete old Credentials
+                4. Find a Credential
+                5. Generate a new password
+                Q. Quit application
+                
                 """)
+                response = input("")
+                if response == "1":
+
 
 
 if __name__ == '__main__':
