@@ -98,9 +98,10 @@ class Credentials:
                 return credential
 
     @classmethod
-    def display_credentials():
-        Credentials.display_credentials()
-        pass
+    def display_credentials(cls):
+        return cls.credentials_list
+        # Credentials.display_credentials()
+        # pass
 
     # def save_credentials(self):
     #     Credentials.save_app_credentials()
@@ -123,3 +124,7 @@ class Credentials:
         password = "".join(random.sample(SYMBOLS, prompt))
         print("\n Password Generated successfully!")
         print("Your new password is " + str, {password})
+
+    @classmethod
+    def credential_presence(cls, param):
+        pass

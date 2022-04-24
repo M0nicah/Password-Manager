@@ -56,8 +56,8 @@ def save_app_credentials(credentials):
     credentials.save_credentials()
 
 
-def display_credentials():
-    return Credentials.display_credentials()
+def display_credentials(credentials):
+    return credentials.display_credentials()
 
 
 def delete_credentials(credentials):
@@ -101,7 +101,7 @@ def passmanager():
         3. Delete old Credentials
         4. Find a Credential
         5. Generate a new password
-        Q. Quit application
+        q. Quit application
 
         """)
         print("What would you like to do?")
@@ -134,14 +134,43 @@ def passmanager():
                 print(f"passWord: {Credential.passWord}")
             if len(credentials_list) == 1:
                 print(f"You have {len(credentials_list)} account credential saved")
+                print("")
             elif len(credentials_list) > 1:
                 print(f"You have {len(credentials_list)} accounts credentials saved")
+            else:
+                print(f"There are no account credentials saved at the moment")
 
         elif command == "3":
             appName = input("Enter the name of the website you want to delete: ")
             Credentials.delete_credentials(appName)
             print(f"The credential with name {appName} has been deleted successfully.")
 
+        elif command == "4":
+            appName = input("What credential do you want to find? ")
+            Credential = Credentials.find_credential(appName)
+            print(" * " * 10)
+            print(f"Appname: {Credential.appName}")
+            print(f"UserName: {Credential.userName}")
+            print(f"passWord: {Credential.passWord}")
+            print(" * " * 10)
+
+        elif command == "5":
+            import random
+            import string
+
+            LETTERS = string.ascii_letters
+            NUMS = "0123456789"
+            SPE = '*&^%$+-_!'
+            SYMBOLS = LETTERS + NUMS + SPE
+            prompt = int(input("Enter password length: "))
+            password = "".join(random.sample(SYMBOLS, prompt))
+            print("\n Password Generated successfully!")
+            print("")
+            print("Your new password is " + str(password))
+            print("")
+
+        elif command == "q":
+            exit()
 
 
 if __name__ == '__main__':
