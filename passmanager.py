@@ -1,33 +1,4 @@
-# print("Welcome to Password Manager!")
-# print("Select a command to continue:")
 
-command = True
-
-
-# while command:  # commands to guide the user
-#     print("""
-#     1.Create New Account
-#     2.Sign In
-#     3.Add a new password
-#     4.Delete a Password
-#     5.Generate a new password
-#     Q.Exit/Quit
-#     """)
-#
-#     print("""******************************************
-#     """)
-#
-#     command = input("What would you like to do? ")
-#     if command == "1":
-#         print("New User Account")
-#         print("*" * 20)
-#         print(str(input("Enter username: ")))
-#         print(str(input("Enter Password: ")))
-#
-#         run.save_user(run.create_new_user(username, user_password=any))
-#         print("\n")
-#         print(f"New User {username} created")
-#
 #         print("Account created Successfully!")
 #     elif command == "2":
 #         print("Log in")
@@ -60,6 +31,10 @@ class User:
         self.username = username
         self.user_password = user_password
 
+    def create_new_user(self, username, user_password):
+        new_user = User(username, user_password)
+        return new_user
+
     def save_user(self):
         """
          test case to check if the user is added to the user list
@@ -72,7 +47,6 @@ class User:
 
     def display_user(self, cls):
         return cls.users_list
-
 
 
 class Credentials:
@@ -103,12 +77,16 @@ class Credentials:
         test case to add new credentials(password and app names)
         """
         Credentials.credentials_list.append(self)
+    @classmethod
+    def delete_credentials(cls, appName):
 
-    def delete_credentials(self):
         """
         delete_credentials method that deletes an account credentials from the credentials_list
         """
-        Credentials.credentials_list.remove(self)
+        for credential in cls.credentials_list:
+            if credential.appName == appName:
+                cls.credentials_list.remove(appName)
+        # Credentials.credentials_list.remove(self)
 
     @classmethod
     def find_credential(cls, appName):
@@ -124,9 +102,9 @@ class Credentials:
         Credentials.display_credentials()
         pass
 
-    def save_credentials(self):
-        Credentials.save_app_credentials()
-        pass
+    # def save_credentials(self):
+    #     Credentials.save_app_credentials()
+    #     pass
 
     @classmethod
     def check_credential_presence(cls, appName):
@@ -144,6 +122,4 @@ class Credentials:
         prompt = int(input("Enter password length: "))
         password = "".join(random.sample(SYMBOLS, prompt))
         print("\n Password Generated successfully!")
-        print("Your new password is " + str(password))
-
-
+        print("Your new password is " + str, {password})

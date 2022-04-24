@@ -56,7 +56,7 @@ def save_app_credentials(credentials):
     credentials.save_credentials()
 
 
-def display_saved_credentials():
+def display_credentials():
     return Credentials.display_credentials()
 
 
@@ -72,70 +72,75 @@ def find_credential(appName):
     return Credentials.find_credential(appName)
 
 
-def generate_password(self):
+def generate_new_password(self):
     new_password = Credentials.generate_new_password(self)
     return new_password
 
 
 def passmanager():
     print("Welcome to Password Manager!")
-    print("Select a command to continue: ")
+    print("")
+    print(" * " * 20)
+    print("  Create an account: ")
+    print(" * " * 20)
+    print("")
+    username = input("Enter username: ")
+    user_password = str(input("Enter password: "))
+    save_user(create_new_user(username, user_password))
+    print("")
+    print(" * " * 30)
+    print(f"  Hello {username}, your account was created successfully! Your account password is {user_password}")
 
-    command = True
+    print(" * " * 30)
+    print(" ")
 
-    while command:  # commands to guide the user
+    while True:
         print("""
-        1.Create New Account
-        2.Already have an account, Sign me in.
-        Q.Exit/Quit
+        1. Create new Credential
+        2. View my Credentials
+        3. Delete old Credentials
+        4. Find a Credential
+        5. Generate a new password
+        Q. Quit application
+
         """)
-
-        print(" * " * 20)
-
-        command = input("What would you like to do? ")
+        print("What would you like to do?")
+        command = input("")
 
         if command == "1":
-            print("Sign Up")
-            print(" # " * 20)
-            username = input("Enter username: ")
-            user_password = ""
-            while True:
-                print("Do you want to generate a strong password? (y/n)")
-                response = input("")
-                if response == "y":
-                    user_password = generate_password(user_password)
-                    break
-                elif response == "n":
-                    user_password = input("Enter your password: ")
-                    break
-                else:
-                    print("Password is invalid!")
+            print("Add new app account details")
+            appName = str(input("Enter name of website/app: "))
+            userName = str(input("Enter the username you used: "))
+            passWord = ""
+            print("1.Add my own password")
+            print("2.Generate new password")
+            password_response = input("")
+            if password_response == "1":
+                passWord = input("Enter password for the software: ")
+                print("")
+            elif password_response == "2":
+                passWord = generate_new_password(passWord)
+                print("")
+            else:
+                print("Please enter a valid response")
 
-            save_user(create_new_user(username, user_password))
-            print(f"Hello {username}, your new account was created successfully! Your account password is {user_password}")
-
-            print(" * " * 30)
+            new = Credentials(appName, userName, passWord)
+            new.save_app_credentials()
         elif command == "2":
-            print("* Welcome back! Sign In... *")
-            print(" # " * 30)
+            credentials_list = Credentials.display_credentials()
+            for Credential in credentials_list:
+                print(f"Appname: {Credential.appName}")
+                print(f"UserName: {Credential.userName}")
+                print(f"passWord: {Credential.passWord}")
+            if len(credentials_list) == 1:
+                print(f"You have {len(credentials_list)} account credential saved")
+            elif len(credentials_list) > 1:
+                print(f"You have {len(credentials_list)} accounts credentials saved")
 
-            username = input("Enter your username: ")
-            user_password = input("Enter password: ")
-            login = user_login(username, user_password)
-            if user_login == login:
-                print(f"Hello {username} welcome back to Password manager 🚀")
-            while True:
-                print("""
-                1. Create new Credential
-                2. View my Credentials
-                3. Delete old Credentials
-                4. Find a Credential
-                5. Generate a new password
-                Q. Quit application
-                
-                """)
-                response = input("")
-                if response == "1":
+        elif command == "3":
+            appName = input("Enter the name of the website you want to delete: ")
+            Credentials.delete_credentials(appName)
+            print(f"The credential with name {appName} has been deleted successfully.")
 
 
 
