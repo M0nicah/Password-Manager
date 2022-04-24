@@ -18,6 +18,14 @@ def save_user(user):
     user.save_user()
 
 
+def user_login(username, user_password):
+    """
+    a function that checks if the users already exist and allows them to login
+    """
+    user_confirmed = Credentials.confirm_user(username, user_password)
+    return user_confirmed
+
+
 def delete_user(user):
     """
     Function to delete a user
@@ -82,14 +90,13 @@ def passmanager():
         Q.Exit/Quit
         """)
 
-        print("""******************************************
-        """)
+        print(" * " * 20)
 
         command = input("What would you like to do? ")
 
-        if command == "1" :
+        if command == "1":
             print("Sign Up")
-            print("#" * 25)
+            print("#" * 40)
             username = (input("Enter username: "))
             user_password = ""
             while True:
@@ -105,21 +112,20 @@ def passmanager():
                     print("Password is invalid!")
 
             save_user(create_new_user(username, user_password))
-            print(f"Hello {username}, a new account was successfully created! Your account password is {user_password}")
-            print("*")
-            print("**")
-            print("***")
-            print("****")
-            print("*****")
+            print(f"Hello {username}, a new account was created successfully! Your account password is {user_password}")
 
-       elif command == "2":
-            print("Log in!")
+            print("*" * 30)
+        elif command == "2":
+            print("* Welcome back! Sign In... *")
+            print("#" * 30)
 
-
-
-
-
-
+            username = input("Enter your username: ")
+            user_password = input("Enter password: ")
+            user_login(username, user_password)
+            while True:
+                print("""
+                Select command to proceed
+                """)
 
 
 if __name__ == '__main__':
