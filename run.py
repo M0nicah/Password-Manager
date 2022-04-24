@@ -25,10 +25,51 @@ def delete_user(user):
     user.delete_user()
 
 
-def display_user():
+def display_user(user):
     """
     Function that returns all the saved users
     """
-    return User.display_user()
+    return user.display_user()
+
+
+def confirm_user():
+    """
+    function that verifies that a user with the username entered exists
+    """
+    return confirm_user()
+
+
+def create_new_credentials(appName, userName, passWord):
+    new_credential = Credentials.create_new_credential(appName, userName, passWord)
+    return new_credential
+
+
+def save_app_credentials(credentials):
+    credentials.save_credentials()
+
+
+def display_saved_credentials():
+    return Credentials.display_credentials()
+
+
+def delete_credentials(credentials):
+    credentials.delete_credentials()
+
+
+def credential_presence(appName):
+    return Credentials.check_credential_presence(appName)
+
+
+def find_credential(appName):
+    return Credentials.find_credential(appName)
+
+
+def generate_password(self):
+    new_password = Credentials.generate_new_password(self)
+    return new_password
+
+
+
+
 
 
